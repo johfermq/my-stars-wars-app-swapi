@@ -65,16 +65,16 @@ export async function extractData (endpoint, rowsPerPage) {
 
 	let response = await to(apiService.all(endpoint));
 
-	await to(items.push(...response.data.results));
+	await items.push(...response[1].data.results);
 
-    const totalPages = await to(numberOfPages(response.data.count, rowsPerPage));
+    const totalPages = await numberOfPages(response[1].data.count, rowsPerPage);
 
     if (totalPages > 1)
     {
         for (let page = 2; page <= totalPages; page++)
         {
         	let responsePage = await to(apiService.all(endpoint, page));
-        	await to(items.push(...responsePage.data.results));
+        	await items.push(...responsePage[1].data.results);
         }
     }
 
