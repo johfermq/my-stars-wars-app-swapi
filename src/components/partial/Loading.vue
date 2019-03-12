@@ -1,0 +1,7 @@
+<template>
+	<div class="d-flex justify-content-center my-5">
+	  	<div class="spinner-border text-secondary spinner-size" role="status">
+	    	<span class="sr-only">Loading...</span>
+	  	</div>
+	</div>
+</template>

@@ -1,18 +1,45 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+	<div>
+		<HeadHome />
+		<FormSearch />
+		<DynamicComponent :dynamicComponent="dynamicComponent" :loading="loading"/>
+	</div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import { mapState, mapActions } from 'vuex';
+
+import HeadHome from './../components/home/Head.vue';
+import FormSearch from './../components/home/FormSearch.vue';
+import DynamicComponent from './../components/home/DynamicComponent.vue';
 
 export default {
-  name: "home",
-  components: {
-    HelloWorld
-  }
-};
+	name: 'Home',
+	components: {
+		HeadHome,
+		FormSearch,
+		DynamicComponent,
+	},
+  data: () => ({
+    	loading: false,
+  }),
+  created () {
+    this.loadData();
+  },
+  methods: {
+    ...mapActions(['fetchData']),
+    async loadData () {
+      this.loading = true;
+      await this.fetchData().finally(() => this.loading = false);
+    },
+  },
+	computed: {
+		...mapState(['endpoint']),
+		dynamicComponent() {
+      	return (this.endpoint === 'films') ? 'Films' : (
+      		(this.endpoint === 'people') ? 'People' : ''
+      	);
+    },
+	},
+}
 </script>

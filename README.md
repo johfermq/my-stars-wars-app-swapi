@@ -1,4 +1,4 @@
-# desafio-ssilva
+# my-stars-wars-app-swapi
 
 ## Project setup
 ```
