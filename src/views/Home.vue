@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<HeadHome />
-		<FormSearch />
+		<FormSearch :loading="loading"/>
 		<DynamicComponent :dynamicComponent="dynamicComponent" :loading="loading"/>
 	</div>
 </template>

@@ -1,20 +1,16 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import general from './modules/general';
-import people from './modules/people';
-import films from './modules/films';
-import species from './modules/species';
-import planets from './modules/planets';
+import { state } from './states';
+import { getters } from './getters';
+import { actions } from './actions';
+import { mutations } from './mutations';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  	modules: {
-   		general,
-   		people,
-   		films,
-   		species,
-   		planets,
-  	}
+  	state,
+  	mutations,
+  	actions,
+  	getters,
 });

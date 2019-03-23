@@ -9,6 +9,7 @@
         					class="form-control"
         					v-model.trim="endpoint"
         					:class="{ ' is-invalid': $v.endpoint.$error }"
+                            :disabled="loading"
         				>
         					<option
         						v-for="item in items"
@@ -33,6 +34,7 @@
     						aria-describedby="buscar"
     						:placeholder="placeholder"
     						:class="{ ' is-invalid': $v.query.$error }"
+                            :disabled="loading"
     					>
     					<span
     						v-if="!$v.query.alphaNum"
@@ -51,6 +53,12 @@ import { required, alphaNum } from 'vuelidate/lib/validators';
 
 export default {
 	name: 'FormSearch',
+    props: {
+        loading: {
+            type: Boolean,
+            required: true,
+        },
+    },
 	data: () => ({
     	items: [
     		{ text: 'Personajes', value: 'people' },
